@@ -2,4 +2,23 @@ extends layout
 
 block content
   h1= title
-  p Hi 
+  .container
+    .row
+      .col.s12
+        #main.card
+          .card-content
+            span.card-title task List
+            .row
+              form#task-form
+                .iput-field.col.s12
+                  input#task(type='text', name='task')
+                  label(for='task') New Task
+                input.btn(type='submit', value='Add Task')
+          .card-action
+            h5#task-title Tasks
+            .input-field.col.s12
+              input#filter(type='text', name='filter')
+              label(for='filter') Filter Task
+            ul.collection
+            a.clear-tasks.btn.black(href='#') Clear Tasks
+

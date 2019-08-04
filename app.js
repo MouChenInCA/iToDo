@@ -3,18 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-// const mongoose = require('mongoose');
-// mongoose.connect(
-//   ``,
-//   { useNewUrlParser: true }
-// );
+const mongoose = require('mongoose');
+mongoose.connect(
+  `mongodb+srv://itodo:itodo123@cluster0-mvb5z.mongodb.net/test?retryWrites=true&w=majority`,
+  { useNewUrlParser: true }
+);
 
-// var db = mongoose.connection;
-// db.on('error', err => console.error(err));
-// db.once('open', () => console.log('Connected to Mongodb'));
+var db = mongoose.connection;
+db.on('error', err => console.error(err));
+db.once('open', () => console.log('Connected to Mongodb'));
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+//var authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -30,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+//app.use('/auth', authRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
