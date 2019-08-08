@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  ul
+    li: a(href="/incidents") Go Back
+    li: a(href=`/incidents/${incident._id}/edit`) Edit Incident
+    li: a(href=`/incidents/${incident._id}/delete`) Delete Incident
+  h1= incident.description
+  //--h2 #{incident.priority} - #{incident.class.courseCode}

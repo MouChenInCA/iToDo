@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  h1= incident.description
+
+  form(method="POST")
+    input(name="description" value=incident.description placeholder="description of incident")
+
+
+    button(type="submit") Save Incident

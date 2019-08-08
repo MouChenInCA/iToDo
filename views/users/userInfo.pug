@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  ul
+    li: a(href=`/users/${user._id}/edit`) Edit User Information
+
+  h1= user.username
+  p= user.email

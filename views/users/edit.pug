@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  h1= user.username
+
+  form(method="POST")
+    input(name="username" value=user.username placeholder="username" disable )
+    input(name="email" value=user.email placeholder="email" )
+
+    button(type="submit") update user info

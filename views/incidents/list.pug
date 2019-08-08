@@ -1,11 +1,12 @@
-extends layout
+extends ../layout
 
 block content
-  h1= title
-  if isAuthenticated
-    a(href="/incidents/new") Create Incident
+  .container
+    h1 All Incidents
 
-  if incidents 
+    if isAuthenticated
+      a(href="/incidents/new") Create Incident
+
     ul
       each incident in incidents
         li
