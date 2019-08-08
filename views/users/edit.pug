@@ -1,10 +1,18 @@
-extends ../layout
+extends ../layout2
 
 block content
-  h1= user.username
+  .container
+    h1.MC-paddingT-5.MC-paddingB-5.text-center Your Profile!
+    .MC-back.MC-detail
+      form
+        .form-group
+          label(for='exampleInputEmail1') Incident Description
+          input#exampleInputEmail1.form-control(name='username',value=user.username, placeholder='Enter email')
+        .form-group
+          label(for='email') email
+          input#email.form-control(type='email', placeholder='Email')
+        .form-group
+          label(for='address') Address
+          input#address.form-control( placeholder='Address')
 
-  form(method="POST")
-    input(name="username" value=user.username placeholder="username" disable )
-    input(name="email" value=user.email placeholder="email" )
-
-    button(type="submit") update user info
+        button.btn.btn-info Change

@@ -1,10 +1,23 @@
-extends ../layout
+extends ../layout2
 
 block content
-  h1= incident.description
-
-  form(method="POST")
-    input(name="description" value=incident.description placeholder="description of incident")
-
-
-    button(type="submit") Save Incident
+  .container
+    h1.MC-paddingT-5.MC-paddingB-5(style='text-align:center') Edit Your Incident!
+    .MC-back.MC-detail
+      form
+        .form-group
+          label(for='exampleInputEmail1') Incident Description
+          input#exampleInputEmail1.form-control(name='description',value=incident.description , placeholder='Enter email')
+          small#emailHelp.form-text.text-muted We&apos;ll never share your email with anyone else.
+        .form-group
+          label(for='exampleInputPassword1') Password
+          input#exampleInputPassword1.form-control(type='password', placeholder='Password')
+        .form-group
+          label(for='exampleSelect1') Example select
+          select#exampleSelect1.form-control
+            option(value='closed',selected) Closed
+            option 2
+            option 3
+            option 4
+            option 5
+        button.btn.btn-info Change

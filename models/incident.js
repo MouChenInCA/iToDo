@@ -25,8 +25,12 @@ const incidentSchema = new Schema({
   // },
   date: Date,
   status: String,
-  narratives: narrativeSchema,
-  recordNum: String
+  narratives:[{
+      timestamp: Date,
+      narrative: String,
+  }],
+  recordNum: String,
+  Resolution:String
 });
 
 const Incident = mongoose.model('Incident', incidentSchema);

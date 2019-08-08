@@ -24,6 +24,7 @@ router.use(requireAuth);
 
 // List all incidents (GET)
 router.get('/incidents', incidents.findAllIncidents);
+router.post('/incidents', incidents.createNewIncident);
 // List a specific incidents (GET)
 router.get('/incidents/:id', incidents.findIncidentById('incidents/details'));
 

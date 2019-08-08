@@ -1,9 +1,49 @@
 extends ../layout
 
 block content
-  ul
-    li: a(href="/incidents") Go Back
-    li: a(href=`/incidents/${incident._id}/edit`) Edit Incident
-    li: a(href=`/incidents/${incident._id}/delete`) Delete Incident
-  h1= incident.description
+  .container
+    h1.MC-paddingT-5.MC-paddingB-5(style='text-align:center') Incident Details
+    .MC-back.MC-detail.MC-marginB-10
+        .row.MC-paddingB-5
+            p.col-6='Incident Description: '
+            p.col-6(style='text-align:right')=incident.description
+        .row.MC-paddingB-5
+          p.col-6='Incident owner: '
+          p.col-6(style='text-align:right')=incident.owner
+        .row.MC-paddingB-5
+          p.col-6='Incident Priority: '
+          p.col-6(style='text-align:right')=incident.priority
+        .row.MC-paddingB-5
+          p.col-6='Incident Status: '
+          p.col-6(style='text-align:right')
+              span(style='color:#ff3535;font-weight:bold')=incident.status
+        .row.MC-paddingB-5
+          p.col-6='Incident recordNo: '
+          p.col-6(style='text-align:right')=incident.recordNum
+        .row.MC-paddingB-5
+            p.col-6='Incident Customer Info: '
+            p.col-6(style='text-align:right')=incident.customerInfo
+        .row.MC-paddingB-5
+          p.col-6='Incident Date: '
+          p.col-6(style='text-align:right')=date.format(incident.date,'YYYY/MM/DD HH:mm:ss')
+        .row.text-center
+            h3.col-12= 'Narratives'
+                span.badge.MC-black=incident.narratives.length
+        .MC-line.text-center
+        each nar,index in incident.narratives
+          .row.MC-paddingB-5
+            p.col-6='Incident narrative'
+              span.badge.badge-light=index+1
+            p.col-6(style='text-align:right')=nar.narrative
+          .row.MC-paddingB-5
+            p.col-6='Incident timestamp'
+              span.badge.badge-light=index+1
+            p.col-6(style='text-align:right')= date.format(nar.timestamp,'YYYY/MM/DD HH:mm:ss')
+
+
+  //ul
+  //  li: a(href="/incidents") Go Back
+  //  li: a(href=`/incidents/${incident._id}/edit`) Edit Incident
+  //  li: a(href=`/incidents/${incident._id}/delete`) Delete Incident
+  //h1= incident.description
   //--h2 #{incident.priority} - #{incident.class.courseCode}

@@ -2,12 +2,70 @@ extends ../layout
 
 block content
   .container
-    h1 All Incidents
+    .jumbotron
+      h1.display-3 Incident Dashboard
+        i.fas.fa-home(style='color:#78c2ad')
+      p.lead= 'Date: '+date.format(new Date(), 'YYYY/MM/DD HH:mm:ss')
+      hr.my-4
+      p.lead
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@mdo') Add New Incident
+          i.fas.fa-plus
+        a.MC-btn(href="#!") See All Incidents
+      .MC-incidents
+          h1.MC-paddingB-5(style='text-align:center') My incident
+          ul.list-group
+            each incident in incidents
+                    if (incident.owner==user.username)
+                        li.list-group-item.d-flex.justify-content-between.align-items-center
+                            a(href=`/incidents/${incident._id}`)= incident.description
+                            .MC-right
+                              a(href=`/incidents/${incident._id}/edit`)
+                                i.fas.fa-edit
+                              a(href=`/incidents/${incident._id}/delete` style='margin-left:5%;color:red')
+                                i.fas.fa-trash-alt
 
-    if isAuthenticated
-      a(href="/incidents/new") Create Incident
+          h1.MC-paddingT-5.MC-paddingB-5(style='text-align:center')  Others incident
+          ul.list-group
+            each incident in incidents
+              if (incident.owner != user.username)
+                li.list-group-item.d-flex.justify-content-between.align-items-center
+                  a(href=`/incidents/${incident._id}`)= incident.description
 
-    ul
-      each incident in incidents
-        li
-          a(href=`/incidents/${incident._id}`)= incident.description
+    #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title Add New Incident
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') &times;
+          .modal-body
+            form(method='post',action='/incidents')
+              .form-group
+                label.col-form-label(for='description') Incident Description:
+                input#description.form-control(type='text', name='description')
+              .form-group
+                label.col-form-label(for='Incident-priority') Incident priority:
+                input#Incident-priority.form-control(name='priority')
+              .form-group
+                label.col-form-label(for='Customer-information') Customer information:
+                input#Customer-information.form-control(name='customerInfo')
+              .form-group
+                label.col-form-label(for='Incident-Narrative') Incident Narrative:
+                textarea#Incident-Narrative.form-control(name='narrative')
+              .modal-footer
+                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                button.btn.btn-primary Submit
+  //.container
+  //  .jumbotron
+  //    h1.display-3 Hello, world!
+  //  if isAuthenticated
+  //      a.btn.btn-info(href="/incidents/new") Create Incident
+  //      ul.list-group.container
+  //      each incident in incidents
+  //          i.list-group-item.d-flex.justify-content-between.align-items-center
+  //            a(href='`/incidents/${incident._id}`')= incident.description
+
+    //ul
+    //  each incident in incidents
+    //    li
+    //      a(href=`/incidents/${incident._id}`)= incident.description

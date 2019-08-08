@@ -1,8 +1,89 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  background: #f2f2f2!important;
 }
 
 a {
   color: #00B7FF;
+}
+#Incident-Narrative{
+  min-height: 150px!important;
+}
+.MC-btn{
+ float: right;
+}
+.MC-incidents{
+ display: none;
+}
+.MC-paddingT-10{
+  padding-top: 10%;
+}
+.MC-paddingT-5{
+  padding-top: 5%;
+}
+.MC-marginT-5{
+  margin-top: 5%;
+}
+.MC-marginB-5{
+  margin-bottom: 5%;
+}
+.MC-marginB-10{
+  margin-bottom: 10%;
+}
+.MC-paddingB-5{
+padding-bottom: 5%;
+ }
+.MC-back{
+  background: white;
+  padding: 2% 2%;
+  border-radius: 5px;
+}
+.MC-black{
+  background: black;
+}
+.MC-line{
+  border-bottom: 1px solid #e9e8e8;
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+@media only screen and (max-width: 767px){
+  .MC-login{
+     margin-left: 10%;
+     margin-right: 10%;
+   }
+  .MC-detail{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+@media only screen and (min-width: 768px){
+  .MC-login{
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .MC-detail{
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+@media only screen and (min-width: 992px){
+  .MC-login{
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  .MC-detail{
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+}
+@media only screen and (min-width: 1200px){
+  .MC-login{
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+  .MC-detail{
+    margin-left: 20%;
+    margin-right: 20%;
+  }
 }
