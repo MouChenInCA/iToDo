@@ -26,7 +26,7 @@ exports.updateUserInfoById = async (req, res) => {
     new: true,
     runValidators: true
   });
-  res.redirect(`/incidents`);
+  res.redirect(`/`);
 };
 
 // Deleting
@@ -34,6 +34,9 @@ exports.updateUserInfoById = async (req, res) => {
 exports.deleteUserById = async (req, res) => {
   const id = req.params.id;
   await user.findByIdAndDelete(id);
-  res.redirect('/');
+  req.session.destroy(err => {
+    res.redirect('/register');
+  })
 };
+
 

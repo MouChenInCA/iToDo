@@ -47,6 +47,7 @@ router.post('/register', (req, res) => {
     }
   );
 });
+
 // 5 - Log out
 router.get('/logout', (req, res) => {
   req.session.destroy(err => {
