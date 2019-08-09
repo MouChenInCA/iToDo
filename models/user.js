@@ -10,7 +10,7 @@ const userSchema = new Schema({
   // username: {type: String, required: true},
   // password: {type: String, required: true}
   email: String,
-  //usertype: String
+  usertype: String
 });
 
 //userSchema.plugin(findorcreate);

@@ -18,12 +18,16 @@ router.post(
 
 // 3 - Render Register Form
 router.get('/register', (req, res) =>
-  res.render('login', { buttonText: 'Register' })
+  res.render('register', { buttonText: 'Register' })
 );
 // 4 - Handle Register Form Submission
 router.post('/register', (req, res) => {
   User.register(
-    new User({ username: req.body.username }),
+    new User({
+        username: req.body.username,
+        email:req.body.email,
+        usertype:req.body.usertype
+    }),
     req.body.password,
     function(err, account) {
       if (err) {

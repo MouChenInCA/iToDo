@@ -2,9 +2,11 @@ extends layout
 
 block content
   .container
-    h1.MC-paddingT-5.MC-paddingB-5(style='text-align:center') #{buttonText} Form
+    .text-center
+      img.text-center(src='../images/logo-incident.png', alt='Smiley face', height='160', width='160')
+    //h1.MC-paddingT-5.MC-paddingB-5(style='text-align:center') #{buttonText} Form
     .card.border-primary.mb-3.MC-login
-      .card-header #{buttonText} Form
+      h3.text-center.card-header #{buttonText} Form
       .card-body
         form(method="POST")
           .form-group

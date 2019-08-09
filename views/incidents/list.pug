@@ -16,21 +16,56 @@ block content
           ul.list-group
             each incident in incidents
                     if (incident.owner==user.username)
+                      if incident.status == 'Closed'
                         li.list-group-item.d-flex.justify-content-between.align-items-center
-                            a(href=`/incidents/${incident._id}`)= incident.description
-                            .MC-right
-                              a(href=`/incidents/${incident._id}/edit`)
-                                i.fas.fa-edit
-                              a(href=`/incidents/${incident._id}/delete` style='margin-left:5%;color:red')
-                                i.fas.fa-trash-alt
+                          a(href=`/incidents/${incident._id}`)= incident.description
+                          .MC-right
+                            p=incident.status
+                            a(href='#!' style='margin-left:5%;color:red' data-toggle='modal', data-target='#exampleModalCenter')
+                              i.fas.fa-trash-alt
+                        #exampleModalCenter.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+                          .modal-dialog.modal-dialog-centered(role='document')
+                            .modal-content
+                              .modal-header
+                                h5#exampleModalLongTitle.modal-title Deleting
+                                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                  span(aria-hidden='true') &times;
+                              .modal-body Are you sure deleting this?
+                              .modal-footer
+                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                a.btn.btn-primary(href=`/incidents/${incident._id}/delete`) Delete
+                      else
+                        li.list-group-item.d-flex.justify-content-between.align-items-center
+                          a(href=`/incidents/${incident._id}`)= incident.description
+                          .MC-right
+                            a(href=`/incidents/${incident._id}/edit`)
+                              i.fas.fa-edit
+                            a( href='#!' style='margin-left:5%;color:red' data-toggle='modal', data-target='#exampleModalCenter')
+                              i.fas.fa-trash-alt
+                        #exampleModalCenter.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalCenterTitle', aria-hidden='true')
+                          .modal-dialog.modal-dialog-centered(role='document')
+                            .modal-content
+                              .modal-header
+                                h5#exampleModalLongTitle.modal-title Deleting
+                                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                  span(aria-hidden='true') &times;
+                              .modal-body Are you sure deleting this?
+                              .modal-footer
+                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                a.btn.btn-primary(href=`/incidents/${incident._id}/delete`) Delete
 
-          h1.MC-paddingT-5.MC-paddingB-5(style='text-align:center')  Others incident
+
+          h1.MC-paddingT-5.MC-paddingB-5.text-center  Others incident
           ul.list-group
             each incident in incidents
               if (incident.owner != user.username)
                 li.list-group-item.d-flex.justify-content-between.align-items-center
                   a(href=`/incidents/${incident._id}`)= incident.description
-
+                  .MC-right
+                    if incident.status=='New'
+                       p.MC-span-red=incident.status
+                    else
+                       p.MC-span-green=incident.status
     #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
       .modal-dialog(role='document')
         .modal-content
@@ -55,6 +90,7 @@ block content
               .modal-footer
                 button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                 button.btn.btn-primary Submit
+
   //.container
   //  .jumbotron
   //    h1.display-3 Hello, world!

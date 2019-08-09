@@ -1,12 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  if isAuthenticated
-    a(href="/incidents/new") Create Incident
-
-  if incidents 
-    ul
-      each incident in incidents
-        li
-          a(href=`/incidents/${incident._id}`)= incident.description
+    .container
+      .jumbotron
+        .text-center
+            h1 Welcome to My Incident Management System
+            img.text-center(src='../images/logo-incident.png', alt='Incident Managerment', height='180', width='180')
+            .MC-paddingB-5
+              if isAuthenticated
+                a.btn.btn-info(href='/incidents') See Dashboard
+              else
+                a.btn.btn-info(href='/register') Join Us Today!
+            p Developed By Mona | GC2019

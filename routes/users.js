@@ -18,8 +18,6 @@ router.get('/:id',(req, res, next)=> {
   res.render('users/userInfo');
 });
 
-
-
 // router.get('/:id/edit', (req,res,next)=>{
 
 //   users.findUserById('users/userInfo'

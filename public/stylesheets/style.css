@@ -25,6 +25,9 @@ a {
 .MC-marginT-5{
   margin-top: 5%;
 }
+.MC-paddingT-2{
+  margin-top: 2%;
+}
 .MC-marginB-5{
   margin-bottom: 5%;
 }
@@ -46,6 +49,18 @@ padding-bottom: 5%;
   border-bottom: 1px solid #e9e8e8;
   margin-top: 2%;
   margin-bottom: 5%;
+}
+.MC-span-red{
+  color:#ff3535;font-weight:bold
+}
+.MC-span-green{
+  color:#41b98e;font-weight:bold
+}
+.MC-span-gray{
+  color:#6f6f6f;font-weight:bold
+}
+.MC-float-right{
+  text-align:right
 }
 @media only screen and (max-width: 767px){
   .MC-login{

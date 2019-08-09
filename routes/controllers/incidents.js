@@ -48,7 +48,9 @@ exports.createNewIncident = async (req, res,next) => {
 exports.findIncidentById = viewPath => async (req, res) => {
     const id = req.params.id;
     const incident = await Incident.findById(id);
-    res.render(viewPath, { incident,date:date,user:req.user });
+    const status=['Closed','In Progress','New','Dispatched']
+    res.render(viewPath, { incident,date:date,user:req.user,status:status,success:req.flash('success'),
+        err:req.flash('err')});
   }; 
 
 // Find all Incidents
@@ -62,13 +64,48 @@ exports.findAllIncidents = async (req, res) => {
 // Update a Incident based on it's ID
 exports.updateIncidentById = async (req, res) => {
     const body = req.body;
+    console.log(body);
     const id = req.params.id;
-    const incident = await Incident.findByIdAndUpdate(id, body, {
-      new: true,
-      runValidators: true
-    });
-    res.redirect(`/incidents/${incident._id}`);
-  };
+    //if users try to close the incident
+    if(req.body.status=='Closed'){
+        //check them if they fill in the two fields
+       if(req.body.narrative && req.body.Resolution){
+           const incident = await Incident.findByIdAndUpdate(id, body, {
+               new: true,
+               runValidators: true
+           });
+           incident.narratives.push({narrative:req.body.narrative,timestamp:new Date()});
+           incident.save(function (err) {
+               console.log(incident);
+               req.flash('success', 'Your incident is closed Successfully!')
+               res.redirect(`/incidents/${incident._id}`);
+           })
+       }else{
+           // send error without filling in the Resolution before closing it
+           // console.log('i am here!')
+           req.flash('err', 'Please fill in your Resolution before closing it!')
+           res.redirect(`/incidents/${id}/edit`);
+       }
+
+    }else{
+        //check the narrative every time when they try to update
+        if(req.body.narrative){
+            const incident = await Incident.findByIdAndUpdate(id, body, {
+                new: true,
+                runValidators: true
+            });
+            incident.narratives.push({narrative:req.body.narrative,timestamp:new Date()});
+            incident.save(function (err) {
+                console.log(incident);
+                req.flash('success', 'Your incident is update Successfully!')
+                res.redirect(`/incidents/${incident._id}`);
+            })
+        }else {
+            res.redirect(`/incidents/${incident._id}/edit`);
+        }
+    }
+
+};
 
 // Deleting
 // Delete a incident based on it's ID

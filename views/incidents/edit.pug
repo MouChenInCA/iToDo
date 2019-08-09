@@ -3,21 +3,39 @@ extends ../layout2
 block content
   .container
     h1.MC-paddingT-5.MC-paddingB-5(style='text-align:center') Edit Your Incident!
-    .MC-back.MC-detail
-      form
+    .MC-back.MC-detail.MC-marginB-10
+      if (err&&err.length>0)
+        .alert.alert-dismissible.alert-danger
+          button.close(type='button', data-dismiss='alert') &times;
+          strong=err
+      form(method='post')
         .form-group
-          label(for='exampleInputEmail1') Incident Description
-          input#exampleInputEmail1.form-control(name='description',value=incident.description , placeholder='Enter email')
-          small#emailHelp.form-text.text-muted We&apos;ll never share your email with anyone else.
+          label(for='IncidentrecordNo') Incident recordNo:
+          input#IncidentrecordNo.form-control(name='recordNum',value=incident.recordNum disabled)
         .form-group
-          label(for='exampleInputPassword1') Password
-          input#exampleInputPassword1.form-control(type='password', placeholder='Password')
+          label(for='Incidentadmin') Incident admin:
+          input#Incidentadmin.form-control(name='owner',value=incident.owner disabled)
         .form-group
-          label(for='exampleSelect1') Example select
-          select#exampleSelect1.form-control
-            option(value='closed',selected) Closed
-            option 2
-            option 3
-            option 4
-            option 5
+          label(for='CustomerName') Customer info:
+          input#CustomerName.form-control(name='customerinfo',value=incident.customerInfo disabled)
+        .form-group
+          label(for='Description') Incident Description
+          input#Description.form-control(name='description',value=incident.description)
+        .form-group
+          label(for='Priority') Incident Priority:
+          input#Priority.form-control(value=incident.priority name='priority')
+        .form-group
+          label(for='Status') Incident Status:
+          select(name='status')#Status.form-control
+              each st in status
+                if incident.status == st
+                   option(value=incident.status,selected)=incident.status
+                else
+                    option(value=st)=st
+        .form-group
+          label.col-form-label(for='Resolution') Incident Resolution :
+          textarea#Resolution.form-control(name='Resolution')=incident.Resolution
+        .form-group
+          label.col-form-label(for='Incident-Narrative') Incident Narrative * :
+          textarea#Incident-Narrative.form-control(name='narrative' required)
         button.btn.btn-info Change

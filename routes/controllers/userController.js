@@ -19,5 +19,13 @@ exports.updateUserInfoById = async (req, res) => {
     new: true,
     runValidators: true
   });
-  res.redirect(`/users/userInfo`);
+  res.redirect(`/users/${user._id}`);
+};
+
+// Deleting
+// Delete a user info
+exports.deleteUserById = async (req, res) => {
+  const id = req.params.id;
+  await user.findByIdAndDelete(id);
+  res.redirect('/');
 };

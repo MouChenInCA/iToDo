@@ -2,17 +2,18 @@ extends ../layout2
 
 block content
   .container
-    h1.MC-paddingT-5.MC-paddingB-5.text-center Your Profile!
+    .text-center.MC-paddingT-2
+      img.text-center(src='../../images/logo-incident.png', alt='Incident Managerment', height='180', width='180')
     .MC-back.MC-detail
-      form
+      h1.MC-paddingB-5.text-center Profile
+      form(method='post')
         .form-group
-          label(for='exampleInputEmail1') Incident Description
-          input#exampleInputEmail1.form-control(name='username',value=user.username, placeholder='Enter email')
+          label(for='exampleInputEmail1') User Name
+          input#exampleInputEmail1.form-control(value=user.username, disabled)
         .form-group
-          label(for='email') email
-          input#email.form-control(type='email', placeholder='Email')
+          label(for='address') User Type
+          input#address.form-control( value=user.usertype disabled)
         .form-group
-          label(for='address') Address
-          input#address.form-control( placeholder='Address')
-
+          label(for='email') Email Address
+          input#email.form-control(type='email',name='email' value=user.email placeholder='Email')
         button.btn.btn-info Change

@@ -2,30 +2,45 @@ extends ../layout
 
 block content
   .container
-    h1.MC-paddingT-5.MC-paddingB-5(style='text-align:center') Incident Details
+    h1.MC-paddingT-5.MC-paddingB-5.text-center Incident Details
     .MC-back.MC-detail.MC-marginB-10
+        if (success && success.length>0)
+            .alert.alert-dismissible.alert-success
+                button.close(type='button', data-dismiss='alert') &times;
+                strong= `Well done!` + success
         .row.MC-paddingB-5
             p.col-6='Incident Description: '
-            p.col-6(style='text-align:right')=incident.description
+            p.col-6.text-right=incident.description
         .row.MC-paddingB-5
           p.col-6='Incident owner: '
-          p.col-6(style='text-align:right')=incident.owner
+          p.col-6.text-right=incident.owner
         .row.MC-paddingB-5
           p.col-6='Incident Priority: '
-          p.col-6(style='text-align:right')=incident.priority
+          p.col-6.text-right=incident.priority
         .row.MC-paddingB-5
           p.col-6='Incident Status: '
-          p.col-6(style='text-align:right')
-              span(style='color:#ff3535;font-weight:bold')=incident.status
+            if incident.status=='New'
+                p.col-6.text-right
+                    span.MC-span-red=incident.status
+            else if incident.status=='In Progress'
+                p.col-6.text-right
+                    span.MC-span-green=incident.status
+            else
+                p.col-6.text-right
+                    span.MC-span-gray=incident.status
         .row.MC-paddingB-5
           p.col-6='Incident recordNo: '
-          p.col-6(style='text-align:right')=incident.recordNum
+          p.col-6.text-right=incident.recordNum
         .row.MC-paddingB-5
-            p.col-6='Incident Customer Info: '
-            p.col-6(style='text-align:right')=incident.customerInfo
+          p.col-6='Incident Customer Info: '
+          p.col-6.text-right=incident.customerInfo
+        if incident.Resolution
+          .row.MC-paddingB-5
+            p.col-6='Incident Resolution: '
+            p.col-6.text-right=incident.Resolution    
         .row.MC-paddingB-5
           p.col-6='Incident Date: '
-          p.col-6(style='text-align:right')=date.format(incident.date,'YYYY/MM/DD HH:mm:ss')
+          p.col-6.text-right=date.format(incident.date,'YYYY/MM/DD HH:mm:ss')
         .row.text-center
             h3.col-12= 'Narratives'
                 span.badge.MC-black=incident.narratives.length
@@ -34,11 +49,11 @@ block content
           .row.MC-paddingB-5
             p.col-6='Incident narrative'
               span.badge.badge-light=index+1
-            p.col-6(style='text-align:right')=nar.narrative
+            p.col-6.text-right=nar.narrative
           .row.MC-paddingB-5
             p.col-6='Incident timestamp'
               span.badge.badge-light=index+1
-            p.col-6(style='text-align:right')= date.format(nar.timestamp,'YYYY/MM/DD HH:mm:ss')
+            p.col-6.text-right= date.format(nar.timestamp,'YYYY/MM/DD HH:mm:ss')
 
 
   //ul
