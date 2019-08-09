@@ -1,3 +1,9 @@
+//-File name: auth.js
+//-Author: Mou Chen
+//-web site name: iToDo
+//-file description: This is the auth.js page. this manage the routes between pages related to authretion.
+
+
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');

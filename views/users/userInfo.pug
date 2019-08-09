@@ -1,8 +1,32 @@
+//-File name: userInfo.pug
+//-Author: Mou Chen
+//-web site name: iToDo
+//-file description: This is the userInfo.pug page. this is use to display all the information of user who loged in.
+
 extends ../layout
 
 block content
-  ul
-    li: a(href=`/users/${user._id}/edit`) Edit User Information
+  .container
+    h1.MC-paddingT-5.MC-paddingB-5.text-center User Information
+      .MC-back.MC-detail.MC-marginB-10
+          .row.MC-paddingB-5
+              p User Name: 
+              p.col-6.text-right=user.username
+          .row.MC-paddingB-5
+              p User Type: 
+              p.col-6.text-right=user.email
+          .row.MC-paddingB-5
+              p Email Address: 
+              p.col-6.text-right=user.usertype
+          .row.MC-paddingB-5
+            a.btn.btn-success(href=`/users/${user._id}/edit`) Edit
+          .row.MC-paddingB-5  
+            a.btn.btn-danger(href=`/users/${user._id}/delete`) Delete
+            
 
-  h1= user.username
-  p= user.email
+
+
+
+  
+
+

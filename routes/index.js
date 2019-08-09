@@ -1,3 +1,8 @@
+//-File name: index.js
+//-Author: Mou Chen
+//-web site name: iToDo
+//-file description: This is the index.js page. this manage the routes between pages related to incidents information.
+
 var express = require('express');
 var incidents = require('./controllers/incidents');
 var router = express.Router();

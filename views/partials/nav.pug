@@ -17,7 +17,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
     ul.navbar-nav.mr-sm-0
       if isAuthenticated
         li.nav-item
-          a.nav-link(href=`/users/${user._id}/edit`)= user.username
+          a.nav-link(href=`/users/${user._id}/edit`)= user.username  
         li.nav-item
           a.nav-link(href='/logout') Logout
       else

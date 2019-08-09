@@ -1,3 +1,10 @@
+//-File name: userController.js
+//-Author: Mou Chen
+//-web site name: iToDo
+//-file description: This is the routes/user.js page. this defined the method used in router.
+
+
+
 const User = require('../../models/user');
 
 // user info modification
@@ -19,7 +26,7 @@ exports.updateUserInfoById = async (req, res) => {
     new: true,
     runValidators: true
   });
-  res.redirect(`/users/${user._id}`);
+  res.redirect(`/incidents`);
 };
 
 // Deleting
@@ -29,3 +36,4 @@ exports.deleteUserById = async (req, res) => {
   await user.findByIdAndDelete(id);
   res.redirect('/');
 };
+

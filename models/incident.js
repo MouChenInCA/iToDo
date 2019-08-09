@@ -1,3 +1,10 @@
+//-File name: incident.js
+//-Author: Mou Chen
+//-web site name: iToDo
+//-file description: This is the incident.js page. this use as to model to create schema.
+
+
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

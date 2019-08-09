@@ -1,3 +1,8 @@
+//-File name: incident.js
+//-Author: Mou Chen
+//-web site name: iToDo
+//-file description: This is the routes/incident.js page. this defined the method used in router.
+
 const Incident = require('../../models/incident');
 
 let date = require('date-and-time');
